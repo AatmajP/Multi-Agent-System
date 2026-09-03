@@ -9,4 +9,17 @@ load_dotenv()
 llm=ChatMistralAI(
     model="mistral-small-2603",temperature=0)
 
-#1st agent
+#1st agent 
+def build_search_agent():
+    return create_agent(
+        model = llm,
+        tools= [web_search]
+    )
+
+#2nd agent 
+
+def build_reader_agent():
+    return create_agent(
+        model = llm,
+        tools = [scrape_url]
+    )

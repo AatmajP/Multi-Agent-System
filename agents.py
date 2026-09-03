@@ -8,3 +8,5 @@ load_dotenv()
 
 llm=ChatMistralAI(
     model="mistral-small-2603",temperature=0)
+
+#1st agent

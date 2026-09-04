@@ -22,3 +22,8 @@ def run_research_pipeline(topic: str)-> dict:
     state["search_results"] = search_result['messages'][-1].content
 
     print("\n search result ",state['search_results'])
+
+     #step 2 - reader agent 
+    print("\n"+" ="*50)
+    print("step 2 - Reader agent is scraping top resources ...")
+    print("="*50)

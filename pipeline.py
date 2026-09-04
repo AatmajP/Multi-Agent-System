@@ -17,4 +17,8 @@ def run_research_pipeline(topic: str)-> dict:
     search_result = search_agent.invoke({
         "messages" : [("user", f"Find recent, reliable and detailed information about: {topic}")]
     })
-    state["search_result"] = search_result
+                                          #-1 helps to get the last message in 
+                                          # the list of messages
+    state["search_results"] = search_result['messages'][-1].content
+
+    print("\n search result ",state['search_results'])

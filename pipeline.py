@@ -6,7 +6,15 @@ from agents import build_search_agent, build_reader_agent, writer_chain, critic_
 
 def run_research_pipeline(topic: str)-> dict:
     state = {}
+
     # Step 1: Search agent workjng
+
     print("\n"+" ="*50)
     print("step 1 - search agent is working ...")
     print("="*50)
+
+    search_agent = build_search_agent()
+    search_result = search_agent.invoke({
+        "messages" : [("user", f"Find recent, reliable and detailed information about: {topic}")]
+    })
+    state["search_result"] = search_result

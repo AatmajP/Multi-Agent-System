@@ -30,17 +30,16 @@ def scrape_url(url: str) -> str:
     """Scrape and return clean text content from a given URL for deeper reading."""
     try:
         # Fetch the content of the URL with a timeout and a user-agent header
-                     #we are using a user-agent header to mimic a browser request,
-                     #  which can help avoid being blocked by some websites.                               
+        # We are using a user-agent header to mimic a browser request,
+        # which can help avoid being blocked by some websites.
         resp = requests.get(url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})
         # Check if the request was successful
         soup = BeautifulSoup(resp.text, "html.parser")
         # Remove script, style, nav, and footer tags to clean the text
         for tag in soup(["script", "style", "nav", "footer"]):
             tag.decompose()
-            # Get the text content, join it with spaces, and strip leading/trailing 
-            # whitespace with only the first 3000 characters
+        # Get the text content, join it with spaces, and strip leading/trailing 
+        # whitespace with only the first 3000 characters
         return soup.get_text(separator=" ", strip=True)[:3000]
     except Exception as e:
         return f"Could not scrape URL: {str(e)}"
-print(scrape_url.invoke("https://www.hindustantimes.com/world-news"))
